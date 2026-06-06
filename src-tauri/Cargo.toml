@@ -1,0 +1,36 @@
+[package]
+name = "grokdesk"
+version = "0.1.0"
+description = "GrokDesk — run the Grok Build CLI in an embedded PTY terminal"
+authors = ["GrokDesk"]
+edition = "2021"
+rust-version = "1.77"
+
+# The library is what Tauri links against; main.rs is a thin shim.
+[lib]
+name = "grokdesk_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+portable-pty = "0.9"
+which = "7"
+base64 = "0.22"
+
+[features]
+# This feature is used for production builds or when a dev server is not specified,
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

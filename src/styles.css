@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0b0e14;
+  overflow: hidden;
+}
+
+/* Let xterm own its viewport sizing inside the flex pane. */
+.xterm,
+.xterm-viewport {
+  height: 100%;
+}
